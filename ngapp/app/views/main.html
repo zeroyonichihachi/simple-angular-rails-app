@@ -13,9 +13,12 @@
 
   <div class="span5 offset2">
     <div class="well" ng-repeat="note in notes">
-      <a href="" title="Delete" ng-click="delete($index)" class="pull-right">Delete</a>
       <h3>{{note.title}}</h3>
-      <p>{{note.body}}</p>
+      <p>
+        <a ng-href="/notes/{{ note.id }}">
+          {{note.body}}
+        </a>
+      </p>
     <div>
   </div>
 <div>

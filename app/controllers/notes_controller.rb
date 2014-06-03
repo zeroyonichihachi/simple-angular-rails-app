@@ -8,6 +8,7 @@ class NotesController < ApplicationController
 
   # GET /notes/1.json
   def show
+    render json: @note
   end
 
   # POST /notes.json

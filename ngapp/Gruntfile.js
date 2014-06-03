@@ -6,6 +6,7 @@ var mountFolder = function (connect, dir) {
   return connect.static(require('path').resolve(dir));
 };
 var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
+var modRewrite = require('connect-modrewrite');
 
 // # Globbing
 // for performance reasons we're only matching one level down:
@@ -74,6 +75,9 @@ module.exports = function (grunt) {
             return [
               proxySnippet,
               lrSnippet,
+              modRewrite([
+                '!\\.html|\\.js|\\.css|\\swf$ /index.html'
+              ]),
               mountFolder(connect, '.tmp'),
               mountFolder(connect, yeomanConfig.app)
             ];

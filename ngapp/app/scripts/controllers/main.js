@@ -23,3 +23,15 @@ angular.module('notesApp')
   };
 
 });
+
+angular.module('notesApp')
+.controller('ShowCtrl', function($scope, $routeParams, $location, Note){
+  var note = Note.get({noteId: $routeParams.id}, function(){
+    $scope.note = note;
+  });
+
+  $scope.delete = function(noteId) {
+    Note.delete({noteId: noteId});
+    $location.path("/notes");
+  }
+})

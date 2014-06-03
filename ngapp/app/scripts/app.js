@@ -1,13 +1,20 @@
 'use strict';
 
 angular.module('notesApp', ['ngResource'])
-  .config(function ($routeProvider) {
+  .config(function ($locationProvider, $routeProvider) {
+    $locationProvider.html5Mode(true);
+    $locationProvider.hashPrefix = "!";
+
     $routeProvider
-      .when('/', {
+      .when('/notes', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/notes/:id', {
+        templateUrl: 'views/show.html',
+        controller: 'ShowCtrl'
+      })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/notes'
       });
   });
